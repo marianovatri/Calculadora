@@ -4,28 +4,33 @@ import './App.css';
 
 
 
+
+
 function App() {
+
   const [count, setCount] = useState("");
   
-  const [resultado] = useState(false);
+
  
   
  
   return (
     
-     <div>      
+     <div className="Contenedor">      
 
       <p>Calculadora</p>
-       <div>
+
+       <div className="Visor">
       
        <p >{count} </p>
 
       </div>
+
+      <div className="Contenedor-B">
       
       <button onClick={() => setCount(count + "7" )}>
         7
       </button>
-
 
       <button onClick={() => setCount(count + "8")}>
         8
@@ -37,7 +42,9 @@ function App() {
         /
       </button>
 
-      <div>
+      </div>
+
+      <div className="Contenedor-B">
 
       <button onClick={() => setCount(count + "4")}>
         4
@@ -54,7 +61,7 @@ function App() {
 
       </div>
       
-      <div>
+      <div className="Contenedor-B">
       <button onClick={() => setCount(count + "1")}>
         1
       </button>
@@ -70,7 +77,7 @@ function App() {
 
       </div>
 
-      <div>
+      <div className="Contenedor-B">
 
       <button onClick={() => setCount(count + ".")}>
         .
@@ -85,6 +92,10 @@ function App() {
         -
       </button>
 
+      </div>
+
+      <div className="Contenedor-B">
+        <button onClick={() => setCount('')}> CLEAR </button>
       </div>
 
       

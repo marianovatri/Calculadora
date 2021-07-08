@@ -1,4 +1,29 @@
 
+.Visor {
+      background-color: turquoise;
+    color: white;
+    width: 180px;
+  height: 50px;
+  border: 1px solid black;
+}
+
+
+
+.Contenedor-B {
+  width: 180px;
+  height: 50px;
+  display: flex;
+justify-content: center;
+align-items: center;
+font-weight: lighter;
+font-size: 2px;
+background-color: wheat;
+
+color: tomato;
+outline: 1px solid black;
+
+}
+
 
 .App-logo {
   height: 40vmin;
@@ -24,12 +49,15 @@
 
 
 div {
-  margin: 5px;
+  margin-left: 5px;
   padding: px;
+  
 }
 
 button {
-  padding: 7px;
+  padding: 15px;
+ 
+  display: flex;
 
 }
 
