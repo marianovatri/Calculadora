@@ -3,23 +3,38 @@ import React, { useState } from 'react';
 import './App.css';
 
 
-function App() {
+
+
+const App = () => {
+
+
+  const [count, setCount] = useState("0");
+  const[memory, setMemory] = useState(null);
+  const [operator, setOperator] = useState(null);
 
  
-  const [count, setCount] = useState("");
-  
-   
-  
-  var memoria = []
+  const handleButtonPress = content => () => {
+    const num = parseFloat(value);
 
-  function init(e){
+    if (content ==="CLEAR") {
+      setValue("0");
+      setMemory(null);
+      setOperator(null);
+      return;
+
+    }
+
+    if (content === ".") {
+      if (value.includes(".")) return;
+      setValue((value + ".");
+      return;
+    }
+
+    
+  };
      
-      memoria.push(e)
-       
-    console.log(memoria)
- }
  
-  return (
+   return (
     
    
      <div className="Contenedor">      
@@ -35,17 +50,17 @@ function App() {
 
       <div className="Contenedor-B">
       
-      <button class="numero" onClick={() => setCount(count + "7")}>
+      <button onButtonClick={handleButtonPress} content="7">
         7
       </button>
 
-      <button className="numero" onClick={() => setCount(count + "8")}>
+      <button onButtonClick={handleButtonPress}  content="8">
         8
       </button>
-      <button className="numero" onClick={() => setCount(count + "9")}>
+      <button onButtonClick={handleButtonPress} content="9">
         9
       </button>
-      <button id="/" onClick={() => setCount(count + "/")}>
+      <button onButtonClick={handleButtonPress} content="/" type="operator" >
         /
       </button>
 
@@ -53,32 +68,32 @@ function App() {
 
       <div className="Contenedor-B">
 
-      <button className="numero" onClick={() => setCount(count + "4")}>
+      <button onButtonClick={handleButtonPress} content="4">
         4
       </button>
-      <button className="numero" onClick={() => setCount(count + "5")}>
+      <button onButtonClick={handleButtonPress}  content="5">
         5
       </button>
-      <button className="numero" onClick={() => setCount(count + "6")}>
+      <button onButtonClick={handleButtonPress}  content="6">
         6
       </button>
-      <button id="x" onClick={() => setCount(count + "x")}>
+      <button type="operator" onButtonClick={handleButtonPress}  content="x">
         x
       </button>
 
       </div>
       
       <div className="Contenedor-B">
-      <button className="numero" onClick={() => setCount(count + "1")}>
+      <button onButtonClick={handleButtonPress}   content="1">
         1
       </button>
-      <button className="numero" onClick={() => setCount(count + "2")}>
+      <button onButtonClick={handleButtonPress}  content="2">
         2
       </button>
-      <button className="numero" onClick={() => setCount(count + "3")}>
+      <button onButtonClick={handleButtonPress}  content="3">
         3
       </button>
-      <button id="+" onClick={() => setCount(count + "+")}>
+      <button  ontype="operator" ButtonClick={handleButtonPress}  content="+">
         +
       </button>
 
@@ -86,23 +101,23 @@ function App() {
 
       <div className="Contenedor-B">
 
-      <button onClick={() => setCount(count + ".")}>
+      <button onButtonClick={handleButtonPress}  content=".">
         .
       </button>
-      <button onClick={() => setCount(count + "0")}>
+      <button onButtonClick={handleButtonPress}  content="0">
         0
       </button>
-      <button id="=" onClick={() => setCount(count + "=")}>
+      <button type="operator" onButtonClick={handleButtonPress}  content="=">
         =
       </button>
-      <button id="-" onClick={() => setCount(count + "-")}>
+      <button type="operator" onButtonClick={handleButtonPress}  content="-">
         -
       </button>
 
       </div>
 
       <div className="Contenedor-B">
-        <button onClick={() => setCount('')}> CLEAR </button>
+        <button onButtonClick={handleButtonPress} type="function"  content="CLEAR"></button>
       </div>
 
 
