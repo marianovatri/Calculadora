@@ -8,7 +8,7 @@ import './App.css';
 const App = () => {
 
 
-  const [count, setCount] = useState("0");
+  const [value, setValue] = useState("0");
   const[memory, setMemory] = useState(null);
   const [operator, setOperator] = useState(null);
 
@@ -26,113 +26,216 @@ const App = () => {
 
     if (content === ".") {
       if (value.includes(".")) return;
-      setValue((value + ".");
+      setValue(value + ".");
       return;
     }
 
-    
-  };
-     
- 
-   return (
-    
-   
-     <div className="Contenedor">      
+    if (content > 0) {
+      if (value.includes(Number)) return;
+      if (value == 0){
+        setValue("" + content);
+        return;
+      } else {
+        setValue (value + content)
+      return;
+    }
+    }
 
-    
+    if (content === "+") {
+        if (operator !== null) {
+          if (operator === "+") {
+            setMemory(memory + parseFloat(value));
+          } else if (operator === "-") {
+            setMemory (memory - parseFloat(value));
+          } else if (operator === "x") {
+            setMemory(memory * parseFloat(value));
+          } else if (operator === "/") {
+            setMemory(memory / parseFloat(value));
+        }
+      } else {
+        setMemory(parseFloat(value));
+      }
+      setValue("");
+      setOperator("+");
+      return;
+    }
+
+    if (content === "-") {
+      if (operator !== null) {
+        if (operator === "+") {
+          setMemory(memory + parseFloat(value));
+        } else if (operator === "-") {
+          setMemory (memory - parseFloat(value));
+        } else if (operator === "x") {
+          setMemory(memory * parseFloat(value));
+        } else if (operator === "/") {
+          setMemory(memory / parseFloat(value));
+      }
+    } else {
+      setMemory(parseFloat(value));
+    }
+    setValue("");
+    setOperator("-");
+    return;
+  }
+
+
+  if (content === "/") {
+    if (operator !== null) {
+      if (operator === "+") {
+        setMemory(memory + parseFloat(value));
+      } else if (operator === "-") {
+        setMemory (memory - parseFloat(value));
+      } else if (operator === "x") {
+        setMemory(memory * parseFloat(value));
+      } else if (operator === "/") {
+        setMemory(memory / parseFloat(value));
+    }
+    } else {
+    setMemory(parseFloat(value));
+  }
+  setValue("");
+  setOperator("/");
+  return;
+  }
+
+  if (content === "x") {
+    if (operator !== null) {
+      if (operator === "+") {
+        setMemory(memory + parseFloat(value));
+      } else if (operator === "-") {
+        setMemory (memory - parseFloat(value));
+      } else if (operator === "x") {
+        setMemory(memory * parseFloat(value));
+      } else if (operator === "/") {
+        setMemory(memory / parseFloat(value));
+    }
+    } else {
+    setMemory(parseFloat(value));
+  }
+  setValue("");
+  setOperator("x");
+  return;
+  }
+
+  if (content === "=") {
+    if (!operator) return;
+  
+    if(operator === "+") {
+      setValue((memory + parseFloat(value)).toString());
+    } else if (operator === "-") {
+      setValue((memory - parseFloat(value)).toString());
+    } else if (operator === "x") {
+      setValue((memory * parseFloat(value)).toString());
+    } else if (operator === "/") {
+      setValue((memory / parseFloat(value)).toString());
+    }
+    setMemory(null);
+    setOperator(null);
+    return;
+  }
+
+    if (value[value.length - 1] === ".") {
+      setValue(value + content);
+    } else {
+      setValue(parseFloat(num + content).toString());
+    }  
+  }
+  return (
+     
+          
+
+    <div className="cont-1">
+
+      <div>
       <p>Calculadora</p>
+      </div>
 
        <div className="Visor">
       
-       <p >{count} </p>
+       <p>{value} </p>
 
       </div>
-
-      <div className="Contenedor-B">
       
-      <button onButtonClick={handleButtonPress} content="7">
+      <div className="rows">
+      
+      <button onClick={handleButtonPress(7)}>
         7
       </button>
 
-      <button onButtonClick={handleButtonPress}  content="8">
+      <button onClick={handleButtonPress(8)}>
         8
       </button>
-      <button onButtonClick={handleButtonPress} content="9">
+      <button onClick={handleButtonPress(9)} >
         9
       </button>
-      <button onButtonClick={handleButtonPress} content="/" type="operator" >
+      <button onClick={handleButtonPress("/")}  >
         /
       </button>
 
       </div>
 
-      <div className="Contenedor-B">
+      <div className="rows">
 
-      <button onButtonClick={handleButtonPress} content="4">
+      <button onClick={handleButtonPress(4)} >
         4
       </button>
-      <button onButtonClick={handleButtonPress}  content="5">
+      <button onClick={handleButtonPress(5)}  >
         5
       </button>
-      <button onButtonClick={handleButtonPress}  content="6">
+      <button onClick={handleButtonPress(6)}  >
         6
       </button>
-      <button type="operator" onButtonClick={handleButtonPress}  content="x">
+      <button  onClick={handleButtonPress("x")}  >
         x
       </button>
 
       </div>
       
-      <div className="Contenedor-B">
-      <button onButtonClick={handleButtonPress}   content="1">
+      <div className="rows">
+        
+      <button onClick={handleButtonPress(1)}   >
         1
       </button>
-      <button onButtonClick={handleButtonPress}  content="2">
+
+      {<button onClick={handleButtonPress(2)}  >
         2
-      </button>
-      <button onButtonClick={handleButtonPress}  content="3">
+      </button>}
+      
+      <button onClick={handleButtonPress(3)}  >
         3
       </button>
-      <button  ontype="operator" ButtonClick={handleButtonPress}  content="+">
+      <button   onClick={handleButtonPress("+")}  >
         +
       </button>
 
       </div>
 
-      <div className="Contenedor-B">
+      <div className="rows">
 
-      <button onButtonClick={handleButtonPress}  content=".">
-        .
+      <button onClick={handleButtonPress(".")}  >
+         .
       </button>
-      <button onButtonClick={handleButtonPress}  content="0">
+      <button onClick={handleButtonPress(0)}  >
         0
       </button>
-      <button type="operator" onButtonClick={handleButtonPress}  content="=">
+      <button  onClick={handleButtonPress("=")}  >
         =
       </button>
-      <button type="operator" onButtonClick={handleButtonPress}  content="-">
+      <button  onClick={handleButtonPress("-")}  >
         -
       </button>
 
       </div>
 
-      <div className="Contenedor-B">
-        <button onButtonClick={handleButtonPress} type="function"  content="CLEAR"></button>
+      <div className="rows">
+        <button className="CLEAR" onClick={handleButtonPress("CLEAR")} >CLEAR</button>
       </div>
-
-
-    </div>
+      </div>
     
-    
-  );
-
-
-
-  
-  
+  ); 
 }
 
-       
 
 
-export default (App)
+export default (App);
